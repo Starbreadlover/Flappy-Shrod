@@ -1,10 +1,11 @@
-
+package Flappy;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 import javax.transaction.xa.XAException;
+import javax.swing.JOptionPane;
 
 public class GameFile extends JPanel implements ActionListener, KeyListener {
 	int uiWidth = 360;
@@ -80,16 +81,17 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 			addKeyListener (this);
 			
 			
-			back = new ImageIcon(getClass().getResource("./Background.png")).getImage();
-			Bird = new ImageIcon(getClass().getResource("./Bird.png")).getImage();
-			top = new ImageIcon(getClass().getResource("./top.png")).getImage();
-			bottom = new ImageIcon(getClass().getResource("./bottom.png")).getImage();
+			back = new ImageIcon(getClass().getResource("/resources/Background.png")).getImage();
+			Bird = new ImageIcon(getClass().getResource("/resources/Bird.png")).getImage();
+			top = new ImageIcon(getClass().getResource("/resources/top.png")).getImage();
+			bottom = new ImageIcon(getClass().getResource("/resources/bottom.png")).getImage();
+
 			
 			bird = new Bird (Bird); // Initialize it
 			pipes = new ArrayList <Pipe>();
 		
 			
-			placePipesTimer = new Timer(1500, new ActionListener() {
+			placePipesTimer = new Timer(1650, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					placePipes();
@@ -97,12 +99,39 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 				}			
 			});
 			
+			  
+			
 			gameLoop = new Timer(1000/60, this);
 			gameLoop.start();
 			placePipesTimer.start();
 			
+		
+			
 
 	}
+		
+		
+			
+			public void Play() {
+			    // Reset bird position
+			    bird.x = birdx;
+			    bird.y = birdy;
+			    velocityY = 0;
+			    score = 0;
+
+			    // Clear all pipes
+			    pipes.clear();
+
+			    // Reset game state
+			    gameOver = false;
+
+			    // Restart timers
+			    gameLoop.start();
+			    placePipesTimer.start();
+			}
+
+
+			
 		
 		
 		
@@ -123,8 +152,10 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 		bottompipe.y = toppipe.y + pipeH + openingSpace;
 		pipes.add(bottompipe);
 		
-	}
-	
+		
+		}
+		
+
 	
 	public void draw (Graphics g) {
 		g.drawImage(back, 0, 0, uiWidth, uiHeight, null);
@@ -137,17 +168,29 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 		}
 		
 		
-		if (gameOver) {
+		if (gameOver != true) {
 			g.setColor(Color.pink);
-			g.setFont(new Font ("Arial", Font.PLAIN, 30));  
-			g.drawString("GAME OVER BITCH: " + String.valueOf((int) score), 15,20);
-			
-		} else {
-			g.setColor(Color.pink);
-			g.setFont(new Font ("Arial", Font.PLAIN, 20));
+			g.setFont(new Font ("Arial", Font.BOLD, 30));
 			g.drawString(String.valueOf((int) score), 15,35);
 		}
-	}
+		
+		if (gameOver == true) {
+			
+			
+			int choice = JOptionPane.showConfirmDialog(
+	                null,
+	                "U DIED BITCH!! UR SCORE IS: " + score,
+	                "Do you want to PLAY AGAIN?",
+	                JOptionPane.YES_NO_OPTION
+	        );
+			
+			   if (choice == JOptionPane.YES_OPTION) {
+				  Play(); // Restart the game
+		        } else {
+		            System.exit(0); // Exit the game
+		        }
+		    } 
+		}
 	public void move() {
 		//update x and y position
 		velocityY += gravity;
@@ -181,6 +224,7 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 	               a.y < b.y + b.Height &&  //a's top left corner doesn't reach b's bottom left corner
 	               a.y + a.height > b.y;    //a's bottom left corner passes b's top left corner
 	    }
+	
 				
 		
 
@@ -201,6 +245,8 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE); 
 		velocityY = -9;
+		
+		
 	}
 	
 	

@@ -1,4 +1,4 @@
-
+package Flappy;
 import javax.swing.*; 
 
 public class FlappyMain {
@@ -8,7 +8,6 @@ public class FlappyMain {
 		int uiHeight = 680;
 		
 		JFrame xiane = new JFrame ("Flappy Shrod");
-		xiane.setVisible(true);
 		xiane.setSize(uiWidth, uiHeight);
 		xiane.setLocationRelativeTo(null);
 		xiane.setResizable(false);
