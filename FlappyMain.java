@@ -1,4 +1,4 @@
-package Flappy;
+
 import javax.swing.*; 
 
 public class FlappyMain {
