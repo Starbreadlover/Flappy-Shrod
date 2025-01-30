@@ -1,4 +1,3 @@
-package Flappy;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -81,10 +80,10 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 			addKeyListener (this);
 			
 			
-			back = new ImageIcon(getClass().getResource("/resources/Background.png")).getImage();
-			Bird = new ImageIcon(getClass().getResource("/resources/Bird.png")).getImage();
-			top = new ImageIcon(getClass().getResource("/resources/top.png")).getImage();
-			bottom = new ImageIcon(getClass().getResource("/resources/bottom.png")).getImage();
+			back = new ImageIcon(getClass().getResource("./Background.png")).getImage();
+			Bird = new ImageIcon(getClass().getResource("./Bird.png")).getImage();
+			top = new ImageIcon(getClass().getResource("./top.png")).getImage();
+			bottom = new ImageIcon(getClass().getResource("./bottom.png")).getImage();
 
 			
 			bird = new Bird (Bird); // Initialize it
