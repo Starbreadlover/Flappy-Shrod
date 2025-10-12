@@ -90,7 +90,7 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 			pipes = new ArrayList <Pipe>();
 		
 			
-			placePipesTimer = new Timer(1650, new ActionListener() {
+			placePipesTimer = new Timer(1500, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					placePipes();
@@ -100,7 +100,7 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 			
 			  
 			
-			gameLoop = new Timer(1000/60, this);
+			gameLoop = new Timer(900/60, this);
 			gameLoop.start();
 			placePipesTimer.start();
 			
