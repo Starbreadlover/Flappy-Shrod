@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
-import javax.transaction.xa.XAException;
 import javax.swing.JOptionPane;
 
 public class GameFile extends JPanel implements ActionListener, KeyListener {
@@ -254,13 +253,13 @@ public class GameFile extends JPanel implements ActionListener, KeyListener {
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		 
 		
 	}
 	
